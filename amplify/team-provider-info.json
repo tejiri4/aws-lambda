@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-savingplan-dev-85825-authRole",
+      "UnauthRoleArn": "arn:aws:iam::259312889812:role/amplify-savingplan-dev-85825-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::259312889812:role/amplify-savingplan-dev-85825-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-savingplan-dev-85825-deployment",
+      "UnauthRoleName": "amplify-savingplan-dev-85825-unauthRole",
+      "StackName": "amplify-savingplan-dev-85825",
+      "StackId": "arn:aws:cloudformation:us-east-1:259312889812:stack/amplify-savingplan-dev-85825/d4aabf40-4f2b-11eb-9614-0e6ee54e29b3",
+      "AmplifyAppId": "d3clnd5memjd40"
+    }
+  }
+}
