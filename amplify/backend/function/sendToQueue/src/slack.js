@@ -17,7 +17,6 @@ const types = {
 const logToSlack = async ({
   type, message, title, params,
 }) => {
-  console.log(type, message,'==================');
   let fields = [];
 
   if (params) {
@@ -44,6 +43,7 @@ const logToSlack = async ({
     ],
   });
 
+  console.log(res, '===slack res');
   return res;
 }
 

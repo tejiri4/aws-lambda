@@ -6,10 +6,10 @@ const { logToSlack, types } = require('./slack');
 require('dotenv').config()
 
 const dbConfig = {
-  host: 'jhdjjtqo9w5bzq2t.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  user: 'ayn7emlvm5ononzc',
-  password: 'sc68jktkye3jj43e',
-  database: 'ty1qmzx3plmpitpc'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
 }
 
 const connection = mysql.createConnection(dbConfig);

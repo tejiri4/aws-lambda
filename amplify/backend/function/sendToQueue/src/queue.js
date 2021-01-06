@@ -4,22 +4,22 @@ const { logToSlack, types } = require('./slack');
 // configure dotenv
 require('dotenv').config()
 
-// const {
-//   PAYFI_AWS_REGION,
-//   PAYFI_AWS_SECRET_ACCESS_KEY,
-//   PAYFI_AWS_ACCESS_KEY_ID,
-// } = process.env;
+const {
+  PAYFI_AWS_REGION,
+  PAYFI_AWS_SECRET_ACCESS_KEY,
+  PAYFI_AWS_ACCESS_KEY_ID,
+} = process.env;
 
 AWS.config.update({
-  accessKeyId: 'AKIATYYCAV7KNMS4J5AG',
+  accessKeyId: PAYFI_AWS_ACCESS_KEY_ID,
   secretAccessKey:
-    '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',
-  region: 'us-east-1',
+    PAYFI_AWS_SECRET_ACCESS_KEY,
+  region: PAYFI_AWS_REGION,
 });
 
 const sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
 
-const queueUrl = 'https://sqs.us-east-1.amazonaws.com/259312889812/SAVING_PLAN';
+const queueUrl = process.env.SQS_QUEUE_URL;
 
 
 const sendMessageToQueue = message => {
@@ -28,21 +28,22 @@ const sendMessageToQueue = message => {
     QueueUrl: queueUrl
   }
 
-  return new Promise((resolve,reject) => {
-  sqs.sendMessage(data, async (err, data) => {
-    if (err) {
-      reject(err)
-    } // an error occurred
-    else {
-      await logToSlack({
-        type: types.saving_plan,
-        title: 'New saving plans has been added to queue',
-        message: JSON.stringify(data)
-      })
+  return new Promise((resolve, reject) => {
+    sqs.sendMessage(data, async (err, data) => {
+      console.log(err, data);
+      if (err) {
+        reject(err)
+      } // an error occurred
+      else {
+        // await logToSlack({
+        //   type: types.saving_plan,
+        //   title: 'New saving plans has been added to queue',
+        //   message: JSON.stringify(data)
+        // })
 
-      resolve(data)
-    };  // successful response
-  });
+        resolve(data)
+      };  // successful response
+    });
   })
 }
 

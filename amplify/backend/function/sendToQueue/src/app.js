@@ -26,11 +26,11 @@ app.use('/', async (req, res) => {
 
     return res.json(queueResponse);
   } catch (err) {
-    await logToSlack({
-      type: types.error,
-      title: 'sendMessageToQueue is failing',
-      message: JSON.stringify(err)
-    })
+    // await logToSlack({
+    //   type: types.error,
+    //   title: 'sendMessageToQueue is failing',
+    //   message: JSON.stringify(err)
+    // })
   }
 });
 
